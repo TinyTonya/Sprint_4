@@ -2,6 +2,7 @@ package ru.qa.scooter.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class MainPage {
     private WebDriver driver;
@@ -10,11 +11,10 @@ public class MainPage {
     private By orderButtonTop = By.className("Button_Button__ra12g");
 
     // Кнопка «Заказать» внизу страницы
-    public By orderButtonBottom = By.className("Button_Button__ra12g Button_Middle__1CSJM");
+    public By orderButtonBottom = By.xpath("/html/body/div[1]/div/div[1]/div[4]/div[2]/div[5]/button");
 
     // Выпадающий список в разделе «Вопросы о важном»
     private By accordionItem = By.className("accordion__item");
-
 
     // Ответы на вопросы из списка "Вопросы о важном"
     private By accordionItemText = By.xpath("//div[@data-accordion-component='AccordionItemPanel']");
@@ -31,6 +31,11 @@ public class MainPage {
     // клик по нижней кнопке Заказать
     public void clickOrderButtonBottom() {
         driver.findElement(orderButtonBottom).click();
+    }
+
+    //получить вопрос из списка
+    public WebElement getAccordionItemElement(int index) {
+        return driver.findElement(By.id("accordion__heading-" + index));
     }
 
     // клик по вопросам из списка "вопросы о важном"
