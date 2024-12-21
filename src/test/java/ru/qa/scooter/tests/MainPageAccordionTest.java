@@ -6,7 +6,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import ru.qa.scooter.pages.MainPage;
@@ -14,11 +13,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.JavascriptExecutor;
 
 @RunWith(Parameterized.class)
-public class MainPageAccordionTest {
-    public static final String PAGE_URL = "https://qa-scooter.praktikum-services.ru/";
-
-    private WebDriver driver;
-    private MainPage mainPage;
+public class MainPageAccordionTest extends CommonParameters{
     private int accordionIndex;
     private String expectedText;
 

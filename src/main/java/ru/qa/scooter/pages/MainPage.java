@@ -11,7 +11,8 @@ public class MainPage {
     private By orderButtonTop = By.className("Button_Button__ra12g");
 
     // Кнопка «Заказать» внизу страницы
-    public By orderButtonBottom = By.xpath("/html/body/div[1]/div/div[1]/div[4]/div[2]/div[5]/button");
+    //public By orderButtonBottom = By.xpath("/html/body/div[1]/div/div[1]/div[4]/div[2]/div[5]/button");
+    public By orderButtonBottom = By.xpath("//div[@class = 'Home_FinishButton__1_cWm']/button");
 
     // Выпадающий список в разделе «Вопросы о важном»
     private By accordionItem = By.className("accordion__item");

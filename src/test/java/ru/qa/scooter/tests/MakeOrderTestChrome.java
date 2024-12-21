@@ -7,7 +7,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import ru.qa.scooter.pages.ConfirmWindow;
@@ -15,14 +14,12 @@ import ru.qa.scooter.pages.MainPage;
 import ru.qa.scooter.pages.OrderWindow;
 import ru.qa.scooter.pages.SuccessfulOrder;
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
 // параметризация
 @RunWith(Parameterized.class)
-public class MakeOrderTestChrome {
-    private WebDriver driver;
-    private static MainPage mainPage;
-    public static final String PAGE_URL = "https://qa-scooter.praktikum-services.ru/";
+public class MakeOrderTestChrome extends CommonParameters {
     private final String firstName;
     private final String lastName;
     private final String address;
@@ -57,12 +54,14 @@ public class MakeOrderTestChrome {
 
     @Test
     public void testOrderFormFields() {
-        if (whatButtonToClick == "topButtonToClick") {
+        if (whatButtonToClick.equals("topButtonToClick")) {
             mainPage.clickOrderButtonTop();
-        } else if (whatButtonToClick == "bodyButtonToClick"){
+        } else if (whatButtonToClick.equals("bodyButtonToClick")){
             WebElement element = driver.findElement(mainPage.orderButtonBottom);
             ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
-            mainPage.clickOrderButtonBottom();
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+            Assert.assertTrue(element.isDisplayed());
+            element.click();
         }
 
         OrderWindow orderWindow = new OrderWindow(driver);
